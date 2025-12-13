@@ -1,10 +1,4 @@
 {
-  "builds": [
-    {
-      "src": "DjangoProjectFood/wsgi.py",
-      "use": "@vercel/python"
-    }
-  ],
   "routes": [
     {
       "src": "/(.*)",
