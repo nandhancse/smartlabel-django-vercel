@@ -27,7 +27,13 @@ SECRET_KEY = 'django-insecure-pqn_pi4_yy^a3nk^d_%c)@q_2ao#rnsf@!6vzcep5stk28ssmg
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["smartlabel-django-vercel.vercel.app","127.0.0.1","localhost"]
+ALLOWED_HOSTS = [
+    "smartlabel-django-vercel.vercel.app",
+    "smartlabel-django-vercel-n615mthhd-nandhansces-projects.vercel.app",
+    "127.0.0.1",
+    "localhost",
+]
+
 
 
 # Application definition
