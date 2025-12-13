@@ -2,7 +2,7 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "DjangoProjectFood/wsgi.py"
+      "dest": "/wsgi_vercel.py"
     }
   ]
 }
