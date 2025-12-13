@@ -22,7 +22,7 @@ class Migration(migrations.Migration):
             ],
             options={
                 'db_table': 'canteen_items',
-                'managed': False,
+                'managed': True,
             },
         ),
     ]
