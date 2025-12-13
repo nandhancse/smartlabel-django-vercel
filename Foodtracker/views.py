@@ -19,7 +19,7 @@ def snack_list(request):
     if item_name:
         # First try exact match (case-insensitive)
         try:
-            item = CanteenItems.objects.get(item_name__iexact=item_name)
+            item = CanteenItems.objects.get(item_name__icontains=item_name)
             # Build the URL and redirect
             detail_url = reverse('snack_detail', kwargs={'item_name': item.item_name})
             return redirect(detail_url)
