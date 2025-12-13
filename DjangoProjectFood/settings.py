@@ -28,11 +28,11 @@ SECRET_KEY = 'django-insecure-pqn_pi4_yy^a3nk^d_%c)@q_2ao#rnsf@!6vzcep5stk28ssmg
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    "smartlabel-django-vercel.vercel.app",
-    "smartlabel-django-vercel-n615mthhd-nandhansces-projects.vercel.app",
+    ".vercel.app",
     "127.0.0.1",
     "localhost",
 ]
+
 
 
 
