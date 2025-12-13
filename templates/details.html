@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snack Details - Smart Label</title>
+    <link rel="stylesheet" href="{% static 'details.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-container">
+        <div class="floating-emoji" style="--delay: 0s; --duration: 15s; --start-x: 10%;">🍪</div>
+        <div class="floating-emoji" style="--delay: 1s; --duration: 18s; --start-x: 20%;">🍫</div>
+        <div class="floating-emoji" style="--delay: 2s; --duration: 20s; --start-x: 30%;">🍎</div>
+        <div class="floating-emoji" style="--delay: 0.5s; --duration: 16s; --start-x: 40%;">🥨</div>
+        <div class="floating-emoji" style="--delay: 1.5s; --duration: 19s; --start-x: 50%;">🍌</div>
+        <div class="floating-emoji" style="--delay: 2.5s; --duration: 17s; --start-x: 60%;">🍇</div>
+    </div>
+
+    <div class="content-wrapper">
+        <header>
+            <a href="{% url 'home' %}" class="back-button">← Back to Home</a>
+            <h1 class="item-name">{{ item.item_name }}</h1>
+        </header>
+
+        <main>
+            <div class="details-container">
+                <!-- Diamond Layout -->
+                <div class="diamond-layout">
+                    <!-- Top Box - Price -->
+                    <div class="info-box price-box">
+                        <div class="box-icon">💰</div>
+                        <div class="box-label">Price</div>
+                        <div class="box-value">₹{% if item.price_rs %}{{ item.price_rs }}{% else %}N/A{% endif %}</div>
+                    </div>
+
+                    <!-- Left Box - Protein -->
+                    <div class="info-box protein-box">
+                        <div class="box-icon">💪</div>
+                        <div class="box-label">Protein</div>
+                        <div class="box-value">{% if item.protein_g %}{{ item.protein_g }}g{% else %}N/A{% endif %}</div>
+                    </div>
+
+                    <!-- Center Box - Rating -->
+                    <div class="info-box rating-box center-box">
+                        <div class="box-icon">⭐</div>
+                        <div class="box-label">Rating</div>
+                        <div class="box-value rating-value">{% if item.rating_out_of_5 %}{{ item.rating_out_of_5 }}{% else %}0{% endif %}/5</div>
+                        <div class="rating-stars">
+                            {% if rating_int >= 1 %}<span class="star filled">★</span>{% else %}<span class="star">★</span>{% endif %}
+                            {% if rating_int >= 2 %}<span class="star filled">★</span>{% else %}<span class="star">★</span>{% endif %}
+                            {% if rating_int >= 3 %}<span class="star filled">★</span>{% else %}<span class="star">★</span>{% endif %}
+                            {% if rating_int >= 4 %}<span class="star filled">★</span>{% else %}<span class="star">★</span>{% endif %}
+                            {% if rating_int >= 5 %}<span class="star filled">★</span>{% else %}<span class="star">★</span>{% endif %}
+                        </div>
+                    </div>
+
+                    <!-- Right Box - Calories -->
+                    <div class="info-box calories-box">
+                        <div class="box-icon">🔥</div>
+                        <div class="box-label">Calories</div>
+                        <div class="box-value">{% if item.calories_kcal %}{{ item.calories_kcal }} kcal{% else %}N/A{% endif %}</div>
+                    </div>
+
+                    <!-- Bottom Box - Additional Info (optional) -->
+                    <div class="info-box info-box-bottom">
+                        <div class="box-icon">📊</div>
+                        <div class="box-label">Nutrition Info</div>
+                        <div class="box-value">Complete</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; <span class="pizza-emoji">🍕</span> 2024 Smart Label. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
+

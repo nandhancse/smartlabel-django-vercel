@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Label - Healthy Snack Tracker</title>
+    <link rel="stylesheet" href="{% static 'Home.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-container">
+        <div class="floating-emoji" style="--delay: 0s; --duration: 15s; --start-x: 10%;">🍪</div>
+        <div class="floating-emoji" style="--delay: 1s; --duration: 18s; --start-x: 20%;">🍫</div>
+        <div class="floating-emoji" style="--delay: 2s; --duration: 20s; --start-x: 30%;">🍎</div>
+        <div class="floating-emoji" style="--delay: 0.5s; --duration: 16s; --start-x: 40%;">🥨</div>
+        <div class="floating-emoji" style="--delay: 1.5s; --duration: 19s; --start-x: 50%;">🍌</div>
+        <div class="floating-emoji" style="--delay: 2.5s; --duration: 17s; --start-x: 60%;">🍇</div>
+        <div class="floating-emoji" style="--delay: 0.8s; --duration: 21s; --start-x: 70%;">🥜</div>
+        <div class="floating-emoji" style="--delay: 1.8s; --duration: 15s; --start-x: 80%;">🍓</div>
+        <div class="floating-emoji" style="--delay: 2.2s; --duration: 18s; --start-x: 90%;">🥐</div>
+        <div class="floating-emoji" style="--delay: 0.3s; --duration: 20s; --start-x: 15%;">🍬</div>
+        <div class="floating-emoji" style="--delay: 1.2s; --duration: 16s; --start-x: 25%;">🥝</div>
+        <div class="floating-emoji" style="--delay: 2.8s; --duration: 19s; --start-x: 35%;">🍯</div>
+        <div class="floating-emoji" style="--delay: 0.7s; --duration: 17s; --start-x: 45%;">🧀</div>
+        <div class="floating-emoji" style="--delay: 1.9s; --duration: 22s; --start-x: 55%;">🍊</div>
+        <div class="floating-emoji" style="--delay: 2.4s; --duration: 18s; --start-x: 65%;">🥑</div>
+        <div class="floating-emoji" style="--delay: 0.6s; --duration: 20s; --start-x: 75%;">🍉</div>
+        <div class="floating-emoji" style="--delay: 1.4s; --duration: 16s; --start-x: 85%;">🍒</div>
+        <div class="floating-emoji" style="--delay: 2.6s; --duration: 19s; --start-x: 95%;">🥨</div>
+    </div>
+
+    <div class="content-wrapper">
+        <header>
+            <h1 class="main-title">Smart Label</h1>
+        </header>
+
+        <main>
+            <div class="description-container">
+                <p class="typing-text" id="typingText"></p>
+            </div>
+
+            <!-- Search/Filter Form -->
+            <div class="search-container">
+                <form method="get" action="" class="search-form">
+                    <div class="search-wrapper">
+                        <input
+                            type="text"
+                            name="item_name"
+                            id="id_item_name"
+                            class="search-input"
+                            placeholder="Enter snack name..."
+                            value="{{ request.GET.item_name|default:'' }}"
+                            autocomplete="off"
+                        >
+                        <button type="submit" class="search-button">
+                            <span class="button-text">Check</span>
+                            <span class="button-icon">🔍</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; <span class="pizza-emoji">🍕</span> 2024 Smart Label. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const text = "Discover the perfect balance between taste and health. Track your snacks, understand their nutritional value, and make informed choices for a healthier lifestyle.";
+        const typingElement = document.getElementById('typingText');
+        let index = 0;
+
+        function typeText() {
+            if (index < text.length) {
+                typingElement.textContent += text.charAt(index);
+                index++;
+                setTimeout(typeText, 30); // Adjust speed here (30ms per character ≈ 4 seconds total)
+            }
+        }
+
+        // Start typing animation when page loads
+        window.addEventListener('load', () => {
+            setTimeout(typeText, 500); // Small delay before starting
+        });
+    </script>
+</body>
+</html>
