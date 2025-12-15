@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import Http404
 from django.urls import reverse
+
 from .models import CanteenItems
 from .filter import CanteenItemsFilter
 
@@ -13,7 +14,7 @@ def snack_list(request):
     Otherwise, displays the home page with search form.
     """
     # Get the search query from GET parameters
-    item_name = request.GET.get('item_name', '').strip()
+    item_name = request.GET.get("item_name", "").strip()
 
     # If a search query exists, search for items
     if item_name:
@@ -21,24 +22,22 @@ def snack_list(request):
         try:
             item = CanteenItems.objects.get(item_name__iexact=item_name)
             # Build the URL and redirect
-            detail_url = reverse('snack_detail', kwargs={'item_name': item.item_name})
+            detail_url = reverse("tracker:snack_detail", kwargs={"item_name": item.item_name})
             return redirect(detail_url)
         except CanteenItems.DoesNotExist:
             # If no exact match, use Django filters for contains search
             filter_set = CanteenItemsFilter(request.GET, queryset=CanteenItems.objects.all())
             items = filter_set.qs
 
-            # If exactly one result found, redirect to detail page
-            if items.count() == 1:
+            # If any results are found, redirect to the first one
+            if items.exists():
                 item = items.first()
-                # Build the URL and redirect
-                detail_url = reverse('snack_detail', kwargs={'item_name': item.item_name})
+                detail_url = reverse("tracker:snack_detail", kwargs={"item_name": item.item_name})
                 return redirect(detail_url)
-            # If multiple results or no results, stay on home page
-            # (You could add logic here to show a list of results if needed)
+            # If no results, fall through to render home page
 
-    # Render the home page
-    return render(request, 'Home.html')
+    # Render the home page template
+    return render(request, "home.html")
 
 
 def snack_detail(request, item_name):
@@ -59,13 +58,14 @@ def snack_detail(request, item_name):
 
         # Pass item and rating_int to template
         context = {
-            'item': item,
-            'rating_int': rating_int,
+            "item": item,
+            "rating_int": rating_int,
         }
 
-        return render(request, 'details.html', context)
+        return render(request, "details.html", context)
 
     except Http404:
         # If item not found, redirect back to home
-        return redirect('home')
+        return redirect("tracker:home")
+
 
