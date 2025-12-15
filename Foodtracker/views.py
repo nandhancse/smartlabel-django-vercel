@@ -22,7 +22,7 @@ def snack_list(request):
         try:
             item = CanteenItems.objects.get(item_name__iexact=item_name)
             # Build the URL and redirect
-            detail_url = reverse("tracker:snack_detail", kwargs={"item_name": item.item_name})
+            detail_url = reverse("snack_detail", kwargs={"item_name": item.item_name})
             return redirect(detail_url)
         except CanteenItems.DoesNotExist:
             # If no exact match, use Django filters for contains search
@@ -32,7 +32,7 @@ def snack_list(request):
             # If any results are found, redirect to the first one
             if items.exists():
                 item = items.first()
-                detail_url = reverse("tracker:snack_detail", kwargs={"item_name": item.item_name})
+                detail_url = reverse("snack_detail", kwargs={"item_name": item.item_name})
                 return redirect(detail_url)
             # If no results, fall through to render home page
 
@@ -66,6 +66,6 @@ def snack_detail(request, item_name):
 
     except Http404:
         # If item not found, redirect back to home
-        return redirect("tracker:home")
+        return redirect("home")
 
 
