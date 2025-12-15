@@ -37,7 +37,7 @@ def snack_list(request):
             # If no results, fall through to render home page
 
     # Render the home page template
-    return render(request, "home.html")
+    return render(request, "Home.html")
 
 
 def snack_detail(request, item_name):
