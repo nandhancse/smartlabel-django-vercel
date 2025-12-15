@@ -10,6 +10,8 @@ class CanteenItems(models.Model):
     protein_g = models.DecimalField(max_digits=4, decimal_places=1, blank=True, null=True)
     calories_kcal = models.IntegerField(blank=True, null=True)
     rating_out_of_5 = models.DecimalField(max_digits=2, decimal_places=1, blank=True, null=True)
+    objects = models.Manager()
+
 
     class Meta:
         managed = False
