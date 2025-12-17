@@ -30,5 +30,5 @@ class CanteenItemsFilter(django_filters.FilterSet):
 
     class Meta:
         model = CanteenItems
-        db_table = 'CanteenItems'
+
         fields = ['item_name']  # Primary field for search
